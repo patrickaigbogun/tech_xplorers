@@ -6,7 +6,8 @@ import Image from 'next/image'; // Import the Image component
 
 const HomePage: React.FC = () => {
   return (
-    <div className="container ml-0 mt-0 mr-0 mb-40 fixed w-full top-0">
+    <div>
+		<div className="container ml-0 mt-0 mr-0 mb-40 fixed w-full top-0">
       <header className='flex items-center p-10 bg-white w-full'>
         <div className='m-0 flex items-center align'>
           <a href="./">
@@ -16,6 +17,7 @@ const HomePage: React.FC = () => {
           <b>CarePal</b>
         </div>
       </header>
+    </div>  
     <div className="container ml-0 mt-0 mr-0 mb-40 fixed w-full top-0">
       <header className='flex items-center p-10 bg-white w-full'>
         <div className='m-0 flex items-center align'>
@@ -27,6 +29,7 @@ const HomePage: React.FC = () => {
         </div>
       </header>
       <ChatInterface />
+    </div>
     </div>
   );
 };
