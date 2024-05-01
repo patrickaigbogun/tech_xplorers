@@ -1,15 +1,12 @@
+// Ailogic.tsx
 import Anthropic from "@anthropic-ai/sdk";
-import * as dotenv from 'dotenv';
+import '../envConfig.ts'
 
-dotenv.config();
+export const sendToClaude = async (userMessage: string, apiKey: string): Promise<string> => {
+  const anthropic = new Anthropic({
+    apiKey: apiKey, // Replace with your API key
+  });
 
-const apiKey = process.env.ANTHROPIC_API_KEY;
-
-const anthropic = new Anthropic({
-  apiKey: apiKey, // Replace with your API key
-});
-
-export const sendToClaude = async (userMessage: string): Promise<string> => {
   try {
     const msg: any = await anthropic.messages.create({
       model: "claude-3-opus-20240229",

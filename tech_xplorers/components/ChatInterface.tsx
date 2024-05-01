@@ -22,18 +22,24 @@ const ChatInterface: React.FC = () => {
       // Add user message to message list
       const userMessage = { content: inputMessage, timestamp: new Date(), isUser: true };
       setMessages([...messages, userMessage]);
-
+  
       // Clear input field
       setInputMessage('');
-
+  
       // Send message to Claude AI and get response
-      const response = await sendToClaude(inputMessage);
-
-      // Add Claude's response to message list
-      const botResponse = { content: response, timestamp: new Date(), isUser: false };
-      setMessages([...messages, botResponse]);
+      const apiKey = process.env.ANTHROPIC_API_KEY; // Fetch from environment variable
+      if (apiKey) {
+        const response = await sendToClaude(inputMessage, apiKey); // Pass apiKey as an argument
+  
+        // Add Claude's response to message list
+        const botResponse = { content: response, timestamp: new Date(), isUser: false };
+        setMessages([...messages, botResponse]);
+      } else {
+        console.error('API key is not defined.');
+      }
     }
   };
+  
 
   return (
     <div className="flex flex-col h-screen ">
