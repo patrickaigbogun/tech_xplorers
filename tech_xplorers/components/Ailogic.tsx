@@ -1,7 +1,7 @@
 // Ailogic.tsx
 import Anthropic from "@anthropic-ai/sdk";
 import '../envConfig.ts'
-
+ 
 export const sendToClaude = async (userMessage: string, apiKey: string): Promise<string> => {
   const anthropic = new Anthropic({
     apiKey: apiKey, // Replace with your API key
