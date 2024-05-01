@@ -1,3 +1,5 @@
+//Chatbot.tsx
+
 // Define the type for the responses object
 type Responses = {
   [key: string]: string[];
@@ -10,6 +12,7 @@ import responses from '../data/responses.json';
 const getRandomResponse = (category: keyof Responses): string => {
   // Check if the category exists in the responses JSON
   if (category in responses) {
+   // @ts-ignore-next-line: Ignore error for the next line
     const categoryResponses = responses[category];
     // Check if there are responses available for the category
     if (categoryResponses.length > 0) {

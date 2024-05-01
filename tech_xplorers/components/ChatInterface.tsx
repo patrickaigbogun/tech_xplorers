@@ -1,6 +1,8 @@
+//ChatInterface.tsx
+
 import React, { useState, useRef, useEffect } from 'react';
 import Message from '@/components/Message';
-import getRandomResponse from '@/components/chatbot'; // Import the function for getting random responses
+import { sendToClaude } from '@/components/Ailogic'; // Import the function to send message to Claude
 
 const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<{ content: string; timestamp: Date; isUser: boolean }[]>([]);
@@ -15,7 +17,7 @@ const ChatInterface: React.FC = () => {
     }
   }, [messages]);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (inputMessage.trim() !== '') {
       // Add user message to message list
       const userMessage = { content: inputMessage, timestamp: new Date(), isUser: true };
@@ -24,30 +26,18 @@ const ChatInterface: React.FC = () => {
       // Clear input field
       setInputMessage('');
 
-      // Add loading animation message
-      const loadingMessage = { content: '...', timestamp: new Date(), isUser: false };
-      setMessages(prevMessages => [...prevMessages, loadingMessage]);
+      // Send message to Claude AI and get response
+      const response = await sendToClaude(inputMessage);
 
-      // Simulate delay before bot responds (e.g., 1 second)
-      setTimeout(() => {
-        // Get bot response based on user message
-        const botResponse = { content: getBotResponse(inputMessage), timestamp: new Date(), isUser: false };
-
-        // Add bot response to message list
-        setMessages(prevMessages => [...prevMessages.filter(m => m !== loadingMessage), botResponse]);
-      }, 1000); // Adjust the delay time as needed (e.g., 1000 milliseconds = 1 second)
+      // Add Claude's response to message list
+      const botResponse = { content: response, timestamp: new Date(), isUser: false };
+      setMessages([...messages, botResponse]);
     }
   };
 
-  // Function to get bot response based on user message
-  const getBotResponse = (userMessage: string): string => {
-    // Example logic: retrieve a random response from predefined responses
-    return getRandomResponse(userMessage);
-  };
-
   return (
-    <div className="flex flex-col h-screen">
-      <div className="flex-1 overflow-y-auto bg-gray-100 px-4 py-6">
+    <div className="flex flex-col h-screen ">
+      <div className="flex-1 overflow-y-scroll bg-gray-400 px-4 py-6">
         <div className="space-y-4">
           {messages.map((message, index) => (
             <Message key={index} content={message.content} isUserMessage={message.isUser} />
