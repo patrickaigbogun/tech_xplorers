@@ -1,15 +1,14 @@
 // Ailogic.tsx
 import Anthropic from "@anthropic-ai/sdk";
-import '../envConfig.ts'
- 
+
 export const sendToClaude = async (userMessage: string, apiKey: string): Promise<string> => {
   const anthropic = new Anthropic({
-    apiKey: apiKey, // Replace with your API key
+    apiKey: apiKey, // Use the apiKey passed as an argument
   });
 
   try {
     const msg: any = await anthropic.messages.create({
-      model: "claude-3-opus-20240229",
+      model: "Claude 3 Opus 20240229",
       max_tokens: 1000,
       temperature: 0,
       messages: [
