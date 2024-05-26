@@ -1,12 +1,12 @@
-// index.tsx
+// page.tsx
 
 import React from 'react';
 import 'tailwindcss/tailwind.css';
-import ChatInterface from '@/components/ChatInterface';
+import ChatInterface from '@/app/components/ChatInterface';
 import Image from 'next/image'; // Import the Image component
 //import axios from 'axios'; // Import axios for making HTTP requests
 
-const HomePage: React.FC = () => {
+const Page: React.FC = () => {
     return (
         <div>
             {/* Your header component */}
@@ -26,4 +26,4 @@ const HomePage: React.FC = () => {
     );
 };
 
-export default HomePage;
+export default Page;

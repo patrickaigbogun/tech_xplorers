@@ -6,7 +6,7 @@ type Responses = {
 };
 
 // Import the responses JSON file
-import responses from '../data/responses.json';
+import responses from '../../data/responses.json';
 
 // Function to get a random response from a specific category
 const getRandomResponse = (category: keyof Responses): string => {

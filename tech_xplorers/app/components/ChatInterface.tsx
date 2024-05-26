@@ -1,6 +1,8 @@
+'use client'
+
 import React, { useState, useRef, useEffect } from 'react';
-import Message from '@/components/Message';
-import sendToClaude from '@/components/Ailogic';
+import Message from '@/app/components/Message';
+import sendToClaude from '@/app/components/Ailogic';
 
 interface MessageType {
   content: string;
