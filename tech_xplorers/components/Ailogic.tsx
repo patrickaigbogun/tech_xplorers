@@ -1,10 +1,10 @@
 // Ailogic.tsx
 import Anthropic from "@anthropic-ai/sdk";
-import '../envConfig'
 
-export const sendToClaude = async (userMessage: string, apiKey: string): Promise<string> => {
+
+const sendToClaude = async (userMessage: string, _apiKey: string): Promise<string> => {
   const anthropic = new Anthropic({
-    apiKey: apiKey, // Use the apiKey passed as an argument
+    apiKey: process.env.NEXT_PUBLIC_oti4, // Use the apiKey passed as an argument
   });
 
   try {
@@ -33,3 +33,5 @@ export const sendToClaude = async (userMessage: string, apiKey: string): Promise
     return "I'm sorry, there was an error processing your request.";
   }
 };
+
+export default sendToClaude;
