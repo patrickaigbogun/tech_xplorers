@@ -50,7 +50,7 @@ const ChatInterface: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="flex-1 overflow-y-scroll bg-gray-400 px-4 py-6">
+      <div className="flex-1 overflow-auto bg-gray-400 px-4 py-6">
         <div className="space-y-4">
           {messages.map((message, index) => (
             <Message key={index} content={message.content} isUserMessage={message.isUser} />
